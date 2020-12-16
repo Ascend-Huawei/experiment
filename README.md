@@ -98,7 +98,7 @@ Result image with 64 keypoints plotted on detected face saved in 'out' folder.
   - To run code， simply using commands below in the terminal:
   
     ``` 
-    cd head_pose_estimation/src
+    cd head_pose/src
     python3 head_pose_estimation.py 
     ``` 
 
