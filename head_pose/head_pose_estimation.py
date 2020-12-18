@@ -124,9 +124,9 @@ HINT: The first, second and third element of the input list 'resultList'
 correspond to pitch, yaw and roll respectively.'''
 def head_status_get(resultList):
 	# initialize
-	yaw = 'Unknown'
-	pitch = 'Unknown'
-	roll = 'Uknown'
+	yaw = 'None'
+	pitch = 'None'
+	roll = 'None'
 	fg_pitch = True
 	fg_yaw = True
 	fg_roll = True
@@ -146,9 +146,10 @@ def head_status_get(resultList):
 	# Assign 'swing left' or 'swing right' values to 'head_pose' from roll angle values. 
 	### Your code here ###
 	
-	head_pose = 'Viewing direction (pitch, yaw, roll): {}, {}, {}'.format(pitch, yaw, roll)
 	if fg_pitch is False and fg_yaw is False and fg_roll is False:
 		head_pose = 'Viewing direction: Straight ahead'
+	else:
+		head_pose = 'Viewing direction (pitch, yaw, roll): {}, {}, {}'.format(pitch, yaw, roll)
 	return head_pose
 
 def PostProcessing_head(resultList, boxList, image):
