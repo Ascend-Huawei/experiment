@@ -43,7 +43,7 @@ def Main():
 	# preprocessing the image file for face detection
 	input_image = PreProcessing_face(image)
 
-	# one line of code, use the 'Model' object for face detection, and call its 'execute' function with parameter '[input_image]'
+	# one line of code, use the 'Model' object for face detection, call its 'execute' function with parameter '[input_image]' and assign it to list 'resultList_face'
 	### Your code here, one line ###
 
 	# Postprocessing to get the bounding box
@@ -58,7 +58,7 @@ def Main():
 	# Preprocessing for head pose estimation
 	input_image = PreProcessing_head(image, bbox_list)
 	# head pose estimation model inference
-	# one line of code, use the 'Model' object for head pose detection, and call its 'execute' function with parameter '[input_image]'
+	# one line of code, use the 'Model' object for head pose detection, and call its 'execute' function with parameter '[input_image]' assign it to list 'resultList_head'
 	### Your code here, one line ###
 
 	#post processing to obtain coordinates for lines drawing
