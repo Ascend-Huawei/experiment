@@ -51,7 +51,7 @@ def Main():
 		xmin, ymin, xmax, ymax = PostProcessing_face(image, resultList_face)
 		bbox_list = [xmin, ymin, xmax, ymax]
 	except:
-		print('\n***Error***: Face detection inference result is not ready for post processing\n')
+		print('\n***Note***: Face detection inference result is not ready for post processing\n')
 		return
 		
 	# Step 4: Head Pose Estimation
@@ -65,7 +65,7 @@ def Main():
 	try:
 		facepointList, head_status_string = PostProcessing_head(resultList_head, bbox_list, image)
 	except:
-		print('\n***Error***: Head Pose estimation inference result is not ready for post processing\n')
+		print('\n***Note***: Head Pose estimation inference result is not ready for post processing\n')
 		return
 	print('Head angles:', resultList_head[2])
 	print('Pose:', head_status_string)
@@ -98,6 +98,11 @@ def head_status_get(resultList):
 
 	# Assign 'Swing Left', 'Swing Right' or 'OK' values to 'result_roll' from roll angle values. 
 	### Your code here ###
+	
+	if result_yaw == 'None':
+		print ('***Note:*** Yaw is not yet processed')
+	if result_roll == 'None':
+		print ('***Note:*** Roll is not yet processed')
 
 	if result_pitch == 'OK' and result_yaw == 'OK' and result_roll == 'OK':
 		head_pose = 'Viewing direction: Straight ahead'
