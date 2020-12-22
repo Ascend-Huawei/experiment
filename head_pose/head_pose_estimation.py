@@ -100,9 +100,9 @@ def head_status_get(resultList):
 	### Your code here ###
 	
 	if result_yaw == 'None':
-		print ('***Note:*** Yaw is not yet processed')
+		print ('***Note***: Yaw is not yet processed')
 	if result_roll == 'None':
-		print ('***Note:*** Roll is not yet processed')
+		print ('***Note***: Roll is not yet processed')
 
 	if result_pitch == 'OK' and result_yaw == 'OK' and result_roll == 'OK':
 		head_pose = 'Viewing direction: Straight ahead'
