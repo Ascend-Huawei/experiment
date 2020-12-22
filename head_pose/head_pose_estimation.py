@@ -70,6 +70,42 @@ def Main():
 	print('Head angles:', resultList_head[2])
 	print('Pose:', head_status_string)
 
+'''Step 5: Complete the following function to find the viewing direction 
+from predicted head pose angles (pitch, yaw, roll)
+
+HINT: The first, second and third element of the input list 'resultList' 
+correspond to pitch, yaw and roll respectively.'''
+def head_status_get(resultList):
+	# initialize
+	pitch = resultList[2][0] #pitch angle
+	yaw   = resultList[2][1] #yaw angle
+	roll  = resultList[2][2] #roll angle
+	result_yaw = 'None' #viewing direction for yaw
+	result_pitch = 'None' #viewing direction for pitch
+	result_roll = 'None' #viewing direction for roll
+
+
+	# Assign 'Up','Down' or 'OK' values to 'result_pitch' from pitch angle values. 
+	if pitch < -20:
+		result_pitch = 'Up'
+	elif pitch > 20:
+		result_pitch = 'Down'
+	else:
+		result_pitch = 'OK'
+
+	# Assign 'Left', 'Right' or 'OK' values to 'result_yaw' from yaw angle values. 
+	### Your code here ###
+
+	# Assign 'Swing Left', 'Swing Right' or 'OK' values to 'result_roll' from roll angle values. 
+	### Your code here ###
+
+	if result_pitch == 'OK' and result_yaw == 'OK' and result_roll == 'OK':
+		head_pose = 'Viewing direction: Straight ahead'
+	else:
+		head_pose = 'Viewing direction (pitch, yaw, roll): {}, {}, {}'.format(result_pitch, result_yaw, result_roll)
+	return head_pose	
+	
+	
 # face detection model preprocessing
 def PreProcessing_face(image):
 	image = cv2.resize(image, (300,300))
@@ -116,41 +152,6 @@ def PreProcessing_head(image, boxList):
 	image = np.transpose(image, (2, 0, 1)).copy()
 	return image
 	
-
-'''Step 5: Complete the following function to find the viewing direction 
-from predicted head pose angles (pitch, yaw, roll)
-
-HINT: The first, second and third element of the input list 'resultList' 
-correspond to pitch, yaw and roll respectively.'''
-def head_status_get(resultList):
-	# initialize
-	yaw = 'None'
-	pitch = 'None'
-	roll = 'None'
-	fg_pitch = True
-	fg_yaw = True
-	fg_roll = True
-	
-	
-	# Assign 'up' or 'down' values to 'head_pose' from pitch angle values. 
-	if resultList[2][0] < -20:
-		pitch = 'Up'
-	elif resultList[2][0] > 20:
-		pitch = 'Down'
-	else:
-		fg_pitch = False
-
-	# Assign 'left' or 'right' values to 'head_pose' from yaw angle values. 
-	### Your code here ###
-	
-	# Assign 'swing left' or 'swing right' values to 'head_pose' from roll angle values. 
-	### Your code here ###
-	
-	if fg_pitch is False and fg_yaw is False and fg_roll is False:
-		head_pose = 'Viewing direction: Straight ahead'
-	else:
-		head_pose = 'Viewing direction (pitch, yaw, roll): {}, {}, {}'.format(pitch, yaw, roll)
-	return head_pose
 
 def PostProcessing_head(resultList, boxList, image):
 	resultList.append([resultList[1][0][0] * 50, resultList[1][0][1] * 50, resultList[1][0][2] * 50])
